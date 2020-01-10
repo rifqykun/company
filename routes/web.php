@@ -1,4 +1,5 @@
 <?php
+use App\Http\Middleware\CheckAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,10 +12,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+Route::prefix('dashboard')->middleware(CheckAdmin::class)->group(function()
+{
+    Route::get('/', 'Admin\DashboardController@dashboard');
+});
