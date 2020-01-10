@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('admin/plugins/images/favicon.png')}}">
-    <title>@yield('titel')</title>
+    <title>@yield('title')</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('admin/html/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Menu CSS -->
@@ -135,13 +135,13 @@
                 </div>
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
-                        <a href="dashboard.html" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
+                        <a href="/dashboard" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Companies</a>
+                        <a href="/dashboard/company" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Companies</a>
                     </li>
                     <li>
-                        <a href="" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Employees</a>
+                        <a href="/dashboard/employee" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Employees</a>
                     </li>
                     <li>
                         <a href="" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Other</a>
@@ -170,11 +170,7 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Dashboard</h4> </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
-                        </ol>
+                        <h4 class="page-title">@yield('breadcrum')</h4> 
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>

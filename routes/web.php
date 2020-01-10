@@ -16,10 +16,8 @@ use App\Http\Middleware\CheckAdmin;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'Admin\DashboardController@dashboard')->name('dashboard');
+Route::get('/dashboard/company', 'Admin\CompanyController@index');
+Route::get('/dashboard/employee', 'Admin\EmployeeController@index');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::prefix('dashboard')->middleware(CheckAdmin::class)->group(function()
-{
-    Route::get('/', 'Admin\DashboardController@dashboard');
-});
