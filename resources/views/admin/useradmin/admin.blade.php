@@ -1,10 +1,10 @@
 @extends('admin.templateadmin.template')
-@section('title','Employees')
-@section('breadcrum','Dashboard/Employee')
+@section('title','Admin')
+@section('breadcrum','Dashboard/Admin')
 
 @section('contentadmin')
 <div class="container">
-    <a href="/dashboard/addemployee" class="btn btn-primary">Add Employee</a>
+    <a href="/dashboard/addadmin" class="btn btn-primary">Add Admin</a>
     <br>
     <br>
     <table class="table table-striped">
@@ -13,17 +13,15 @@
                 <th>No</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Company Name</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($employee as $e)
+            @foreach($admin as $a)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$e->name}}</td>
-                <td>{{$e->email}}</td>
-                <td>{{$e->company_name}}</td>
+                <td>{{$a->name}}</td>
+                <td>{{$a->email}}</td>
                 <td>
                     <a href="#" class="btn btn-warning">Edit</a>
                     <a href="#" class="btn btn-danger">Delete</a>
@@ -32,6 +30,5 @@
             @endforeach
         </tbody>
     </table>
-    {{$employee->links()}}
 </div>
 @endsection

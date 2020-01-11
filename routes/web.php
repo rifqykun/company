@@ -16,8 +16,20 @@ use App\Http\Middleware\CheckAdmin;
 
 Auth::routes();
 
-Route::get('/dashboard', 'Admin\DashboardController@dashboard')->name('dashboard');
-Route::get('/dashboard/company', 'Admin\CompanyController@index');
-Route::get('/dashboard/employee', 'Admin\EmployeeController@index');
+Route::get('/', 'Admin\DashboardController@dashboard')->name('dashboard');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+// company
+Route::get('/dashboard/company', 'Admin\CompanyController@index');
+Route::get('/dashboard/addcompany', 'Admin\CompanyController@create');
+Route::post('/addcompany', 'Admin\CompanyController@store');
+Route::get('/dashboard/editcompany/{id}', 'Admin\CompanyController@edit');
+Route::get('/dashboard/deletecompany/{id}', 'Admin\CompanyController@destroy');
+
+// Employee
+Route::get('/dashboard/employee', 'Admin\EmployeeController@index');
+Route::get('/dashboard/addemployee', 'Admin\EmployeeController@create');
+Route::post('/dashboard/addemployee', 'Admin\EmployeeController@store');
+
+// Admin
+Route::get('/dashboard/admin', 'Admin\AdminController@index');

@@ -135,7 +135,7 @@
                 </div>
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
-                        <a href="/dashboard" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
+                        <a href="/" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
                     </li>
                     <li>
                         <a href="/dashboard/company" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Companies</a>
@@ -144,7 +144,7 @@
                         <a href="/dashboard/employee" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Employees</a>
                     </li>
                     <li>
-                        <a href="" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Other</a>
+                        <a href="/dashboard/admin" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>User Admin</a>
                     </li>
                     <li>
                         <a href="" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Other</a>
@@ -169,7 +169,7 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-md-12">
                         <h4 class="page-title">@yield('breadcrum')</h4> 
                     </div>
                     <!-- /.col-lg-12 -->

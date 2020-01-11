@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Company;
-use DB;
-use File;
+use App\User;
 
-class CompanyController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $company = Company::paginate(5);
-        return view('admin.company.company', compact('company'));
+        $admin = User::paginate(5);
+        return view('admin.useradmin.admin', compact('admin'));
     }
 
     /**
@@ -28,7 +26,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('admin.company.addcompany');
+        //
     }
 
     /**
@@ -39,30 +37,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'company_name' => 'required|string',
-            'company_email' => 'required|string',
-            'website' => 'required|string',
-            'logo' => 'required|image|max:2000'
-        ]);
-        
-       if($request->hasFile('logo'))
-       {
-           $resource = $request->file('logo');
-           $name =date('YmdHis').".". $resource->getClientOriginalExtension();
-           $resource->move(\base_path()."/storage/app/company", $name);
-           $save = DB::table('companies')->insert([
-               'company_name' => $request->company_name,
-               'company_email' => $request->company_email,
-               'website' => $request->website,
-               'logo' => $name
-           ]);
-           echo "Logo berhasil diupload";
-           return redirect('dashboard/company');
-       }else
-       {
-           echo "Logo Gagal diUpload";
-       }
+        //
     }
 
     /**
@@ -84,8 +59,7 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        $company = Company::find($id);
-        return view('admin.company.editcompany', compact('company'));
+        //
     }
 
     /**
@@ -108,11 +82,6 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        $logo = Company::where('id',$id)->first();
-        File::delete('/storage/app/company'.$logo->file);
-
-        Company::where('id',$id)->delete();
-
-        return redirect()->back();
+        //
     }
 }

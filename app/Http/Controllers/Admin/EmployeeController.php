@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Employee;
+use App\Company;
 
 class EmployeeController extends Controller
 {
@@ -30,7 +31,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $company = Company::all();
+        return view('admin.employee.addemployee', compact('company'));
     }
 
     /**
@@ -41,7 +43,20 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'company_id' => 'required|integer'
+        ]);
+
+        $employee = new Employee;
+        $employee->name = $request->name;
+        $employee->email = $request->email;
+        $employee->company_id = $request->company_id;
+
+        $employee->save();
+
+        return redirect('dashboard/employee');
     }
 
     /**
