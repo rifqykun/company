@@ -4,7 +4,7 @@
 
 @section('contentadmin')
 <div class="panel-body">
-    <form action="{{ url('addcompany') }}" method="POST" autocomplite="off" id="form-input" enctype="multipart/form-data">
+    <form action="{{$company->id}}" method="POST" autocomplite="off" id="form-input" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label name="name">Nama Company</label>
@@ -28,13 +28,13 @@
             @enderror
         </div>
         <div class="form-group">
-			<label for="logo">Logo</label>
+			<img src="{{asset('storage/app/company/'.$company->logo)}}" alt="" width="75">
 			<input type="file" name="logo" class="form-control-file" id="logo" value="@if(old('logo')) {{old('logo')}} @else {{$company->logo}} @endif">
 			@error('logo')
 		    <span class="invalid"><i>{{$message}}</i></span>
 			@enderror
 		</div>
-		<button type="submit" class="btn btn-primary" style="margin-top: 10px;">Add New Company</button>
+		<button type="submit" class="btn btn-primary" style="margin-top: 10px;">Update Company</button>
     </form>
 </div>
 @endsection

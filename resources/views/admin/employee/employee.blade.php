@@ -25,8 +25,8 @@
                 <td>{{$e->email}}</td>
                 <td>{{$e->company_name}}</td>
                 <td>
-                    <a href="#" class="btn btn-warning">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <a href="{{url('dashboard/editemployee/')}}/{{$e->id}}" class="btn btn-warning">Edit</a>
+                    <a href="{{url('dashboard/deleteemployee/')}}/{{$e->id}}" class="btn btn-danger" onclick="return confirm('Are you sure ?')">Delete</a>
                 </td>
             </tr>
             @endforeach

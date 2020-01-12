@@ -32,7 +32,7 @@
             <span class="invalid"><i>{{$message}}</i></span>
             @enderror
         </div>
-		<button type="submit" class="btn btn-primary" style="margin-top: 10px;">Add New Company</button>
+		<button type="submit" class="btn btn-primary" style="margin-top: 10px;">Add New Employee</button>
     </form>
 </div>
 @endsection

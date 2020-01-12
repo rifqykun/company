@@ -19,16 +19,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($company as $c =>$com)
+            @foreach($company as $c)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$com->company_name}}</td>
-                <td>{{$com->company_email}}</td>
-                <td>{{$com->website}}</td>
-                <td><img src="{{ url('storage/app/company/'.$com->logo) }}" class="img-thumbnail" width="75"></td>
+                <td>{{$c->company_name}}</td>
+                <td>{{$c->company_email}}</td>
+                <td>{{$c->website}}</td>
+                <td><img src="{{asset('storage/app/company/'.$c->logo)}}" class="img-thumbnail" width="75"></td>
                 <td>
-                    <a href="{{url('dashboard/editcompany')}}/{{$com->id}}" class="btn btn-warning">Edit</a>
-                    <a href="{{url('dashboard/deletecompany')}}/{{$com->id}}" class="btn btn-danger" onclick="return confirm('Are you sure ?')">Delete</a>
+                    <a href="{{url('dashboard/editcompany')}}/{{$c->id}}" class="btn btn-warning">Edit</a>
+                    <a href="{{url('dashboard/deletecompany')}}/{{$c->id}}" class="btn btn-danger" onclick="return confirm('Are you sure ?')">Delete</a>
                 </td>
             </tr>
             @endforeach

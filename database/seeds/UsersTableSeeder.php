@@ -15,7 +15,6 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Rifqy',
                 'email' => 'admin@transisi.id',
-                'status' => 'admin',
                 'password' => bcrypt ('transisi')
             ]
         );

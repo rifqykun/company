@@ -17,7 +17,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $company = Company::paginate(5);
+        $company = Company::orderBy('id','DESC')->paginate(5);
         return view('admin.company.company', compact('company'));
     }
 
@@ -50,7 +50,7 @@ class CompanyController extends Controller
        {
            $resource = $request->file('logo');
            $name =date('YmdHis').".". $resource->getClientOriginalExtension();
-           $resource->move(\base_path()."/storage/app/company", $name);
+           $resource->move(\base_path()."/public/storage/app/company", $name);
            $save = DB::table('companies')->insert([
                'company_name' => $request->company_name,
                'company_email' => $request->company_email,
@@ -84,7 +84,7 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        $company = Company::find($id);
+        $company = Company::findOrFail($id);
         return view('admin.company.editcompany', compact('company'));
     }
 
@@ -97,7 +97,30 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'company_name' => 'required|string',
+            'company_email' => 'required|string',
+            'website' => 'required|string',
+            'logo' => 'required|image|max:2000'
+        ]);
+
+        $company = Company::findOrFail($id);
+        $company->company_name = $request->company_name;
+        $company->company_email = $request->company_email;
+        $company->website = $request->website;
+        if(empty($request->file('logo'))){
+            $company->logo = $company->logo;
+            
+        }else{
+            unlink(\base_path().'/public/storage/app/company/'.$company->logo);
+            $file = $request->file('logo');
+            $ext = $file->getClientOriginalExtension();
+            $newName = date('YmdHis').".".$ext;
+            $file->move(\base_path()."/public/storage/app/company", $newName);
+            $company->logo = $newName;
+        }
+        $company->save();
+        return redirect("dashboard/company");
     }
 
     /**
@@ -109,7 +132,7 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         $logo = Company::where('id',$id)->first();
-        File::delete('/storage/app/company'.$logo->file);
+        unlink(\base_path().'/public/storage/app/company/'.$logo->logo);
 
         Company::where('id',$id)->delete();
 

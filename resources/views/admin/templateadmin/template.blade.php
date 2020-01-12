@@ -144,9 +144,6 @@
                         <a href="/dashboard/employee" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Employees</a>
                     </li>
                     <li>
-                        <a href="/dashboard/admin" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>User Admin</a>
-                    </li>
-                    <li>
                         <a href="" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Other</a>
                     </li>
                     <li>

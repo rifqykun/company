@@ -67,7 +67,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -78,7 +78,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::all();
+        $employee = Employee::findOrFail($id);
+        return view('admin.employee.editemployee', compact('company', 'employee'));
     }
 
     /**
@@ -90,7 +92,20 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'company_id' => 'required|integer'
+        ]);
+
+        $employee = Employee::find($id);
+        $employee->name = $request->name;
+        $employee->email = $request->email;
+        $employee->company_id = $request->company_id;
+
+        $employee->save();
+
+        return redirect('dashboard/employee');
     }
 
     /**
@@ -101,6 +116,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+        Employee::find($id)->delete();
+        return redirect('dashboard/employee');
     }
 }
